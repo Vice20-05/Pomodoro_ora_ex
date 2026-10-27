@@ -1,0 +1,40 @@
+@startuml
+interface PomodoroFigyelo {
+    + void onTick(int remainingSeconds)
+    + void onStateChanged(State newState)
+}
+
+enum State {
+    WORK
+    SHORT_BREAK
+    LONG_BREAK
+    PAUSED
+}
+
+class PomodoroModel {
+    - state: State
+    - remainingSeconds: int
+    - completedRounds: int
+    + start(): void
+    + pause(): void
+    + reset(): void
+    + tick(): void
+    + setDurations(int, int, int): void
+}
+
+class PomodoroView {
+    + onTick(int): void
+    + onStateChanged(State): void
+}
+
+class PomodoroController {
+    + handleStart(): void
+    + handlePause(): void
+    + handleReset(): void
+}
+
+PomodoroModel --> PomodoroFigyelo : notifies onTick / onStateChanged
+PomodoroView ..|> PomodoroFigyelo : implements
+PomodoroController --> PomodoroModel : controls via commands
+PomodoroController --> PomodoroView : wires buttons / timer
+@enduml
