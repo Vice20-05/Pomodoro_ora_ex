@@ -14,7 +14,7 @@ public class Main {
         SwingUtilities.invokeLater(() -> {
             PomodoroModel model = new PomodoroModel();
             PomodoroView view = new PomodoroView();
-            PomodoroController controller = new PomodoroController(model, view);
+            new PomodoroController(model, view);
             view.setVisible(true);
         });
     }

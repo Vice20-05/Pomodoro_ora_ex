@@ -27,7 +27,7 @@ public class PomodoroController {
     private final PomodoroModel model;
     private final PomodoroView view;
 
-    private javax.swing.Timer timer;
+    private final javax.swing.Timer timer;
 
     public PomodoroController(PomodoroModel model, PomodoroView view) {
         this.model = model;

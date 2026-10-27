@@ -28,9 +28,11 @@ Pomodoro_ora_ex/
 │   ├── model/         -> PomodoroModel, PomodoroFigyelo, State (no Swing!)
 │   ├── view/          -> PomodoroView (JFrame, implements observer)
 │   └── controller/    -> PomodoroController (buttons -> model)
-├── src/test/
+├── test/
 │   └── model/
 │       └── PomodoroModelTest.java
+├── lib/            -> junit-platform-console-standalone-6.1.3.jar
+├── .vscode/        -> settings.json (source paths + JUnit on the classpath)
 ├── docs/
 │   └── pomodoro.puml   -> PlantUML class diagram (Observer)
 └── README.md
@@ -46,9 +48,13 @@ java -cp out Main
 ## How to run the tests
 
 ```bash
-java -jar /home/alex/Projects/examn/test-lib/junit-platform-console-standalone-6.1.3.jar \
+javac -d out src/Main.java src/model/*.java src/view/*.java src/controller/*.java
+javac -d out_test -cp out:lib/junit-platform-console-standalone-6.1.3.jar test/model/*.java
+java -jar lib/junit-platform-console-standalone-6.1.3.jar \
   execute --class-path out:out_test --scan-class-path
 ```
+
+(On Windows use `;` instead of `:` in the classpath.)
 
 ## UML diagram
 

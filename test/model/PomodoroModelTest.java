@@ -108,13 +108,13 @@ public class PomodoroModelTest {
 
         model.start();
         model.tick();
-        assertEquals(java.util.List.of(2), ticks);
+        assertEquals(List.of(2), ticks);
 
         model.tick();
         model.tick(); // finished -> short break
         assertEquals(State.SHORT_BREAK, model.getState());
-        assertEquals(java.util.List.of(2, 1, 2), ticks);
-        assertEquals(java.util.List.of(State.SHORT_BREAK), states);
+        assertEquals(List.of(2, 1, 2), ticks);
+        assertEquals(List.of(State.SHORT_BREAK), states);
         assertTrue(states.contains(State.SHORT_BREAK));
     }
 }

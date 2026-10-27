@@ -25,6 +25,8 @@ import model.State;
  */
 public class PomodoroView extends JFrame implements PomodoroFigyelo {
 
+    private static final long serialVersionUID = 1L;
+
     private JLabel timeLabel;
     private JLabel statusLabel;
     private JButton startButton;
