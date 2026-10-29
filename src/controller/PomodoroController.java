@@ -67,7 +67,7 @@ public class PomodoroController {
     /** Opens the modal settings dialog for the durations. */
     public void openSettings() {
         JDialog dialog = new JDialog(view, "Pomodoro Settings", true);
-        dialog.setSize(320, 190);
+        dialog.setSize(440, 240);
         dialog.setLocationRelativeTo(view);
 
         JPanel settingsPanel = new JPanel(new GridLayout(3, 2, 10, 10));
@@ -92,6 +92,7 @@ public class PomodoroController {
         JPanel contentPanel = new JPanel(new BorderLayout(10, 10));
         contentPanel.add(settingsPanel, BorderLayout.CENTER);
         contentPanel.add(dialogButtonPanel, BorderLayout.SOUTH);
+        contentPanel.setBorder(javax.swing.BorderFactory.createEmptyBorder(12, 12, 12, 12));
         dialog.setContentPane(contentPanel);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 

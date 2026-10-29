@@ -2,6 +2,7 @@ import javax.swing.SwingUtilities;
 
 import controller.PomodoroController;
 import model.PomodoroModel;
+import view.CyberpunkTheme;
 import view.PomodoroView;
 
 /**
@@ -12,6 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
+            CyberpunkTheme.apply(); // dark neon look, before any window exists
             PomodoroModel model = new PomodoroModel();
             PomodoroView view = new PomodoroView();
             new PomodoroController(model, view);

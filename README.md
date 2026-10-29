@@ -54,8 +54,6 @@ java -jar lib/junit-platform-console-standalone-6.1.3.jar \
   execute --class-path out:out_test --scan-class-path
 ```
 
-(On Windows use `;` instead of `:` in the classpath.)
-
 ## UML diagram
 
 The class diagram lives in `docs/pomodoro.puml` (PlantUML) and shows the

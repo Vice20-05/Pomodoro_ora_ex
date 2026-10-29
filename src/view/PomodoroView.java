@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -39,18 +40,28 @@ public class PomodoroView extends JFrame implements PomodoroFigyelo {
         setTitle("Pomodoro Timer");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        // dark background with a neon frame around the whole window
         mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.WHITE);
+        mainPanel.setBackground(CyberpunkTheme.BACKGROUND);
+        mainPanel.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(CyberpunkTheme.MAGENTA, 2),
+                BorderFactory.createEmptyBorder(14, 14, 14, 14)));
 
         statusLabel = new JLabel(statusText(State.WORK), SwingConstants.CENTER);
+        statusLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
         timeLabel = new JLabel(formatTime(PomodoroModel.DEFAULT_WORK_SECONDS), SwingConstants.CENTER);
-        timeLabel.setFont(new Font("Dialog", Font.BOLD, 72));
+        timeLabel.setFont(new Font(Font.MONOSPACED, Font.BOLD, 84));
 
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        startButton = new JButton("Start");
-        pauseButton = new JButton("Pause");
-        resetButton = new JButton("Reset");
-        settingsButton = new JButton("Settings");
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 8, 0));
+        buttonPanel.setOpaque(false);
+        startButton = new JButton("START");
+        pauseButton = new JButton("PAUSE");
+        resetButton = new JButton("RESET");
+        settingsButton = new JButton("CONFIG");
+        CyberpunkTheme.neonButton(startButton, CyberpunkTheme.CYAN);
+        CyberpunkTheme.neonButton(pauseButton, CyberpunkTheme.YELLOW);
+        CyberpunkTheme.neonButton(resetButton, CyberpunkTheme.MAGENTA);
+        CyberpunkTheme.neonButton(settingsButton, CyberpunkTheme.PURPLE);
         buttonPanel.add(startButton);
         buttonPanel.add(pauseButton);
         buttonPanel.add(resetButton);
@@ -61,7 +72,7 @@ public class PomodoroView extends JFrame implements PomodoroFigyelo {
         mainPanel.add(buttonPanel, BorderLayout.SOUTH);
 
         setContentPane(mainPanel);
-        setSize(420, 360);
+        setSize(520, 360);
         setLocationRelativeTo(null);
 
         // Initial display - will be overwritten by the first observer notification.
@@ -98,31 +109,31 @@ public class PomodoroView extends JFrame implements PomodoroFigyelo {
     private String statusText(State state) {
         switch (state) {
             case WORK:
-                return "Work";
+                return ">> WORK_MODE";
             case SHORT_BREAK:
-                return "Short Break";
+                return ">> SHORT_BREAK";
             case LONG_BREAK:
-                return "Long Break";
+                return ">> LONG_BREAK";
             case PAUSED:
-                return "Paused";
+                return ">> PAUSED //";
             default:
-                return "Work";
+                return ">> WORK_MODE";
         }
     }
 
-    /** Background color of the countdown for each state. */
+    /** Neon color of the countdown for each state. */
     private Color colorFor(State state) {
         switch (state) {
             case WORK:
-                return new Color(0xE53935);       // red
+                return CyberpunkTheme.MAGENTA;
             case SHORT_BREAK:
-                return new Color(0x43A047);       // green
+                return CyberpunkTheme.CYAN;
             case LONG_BREAK:
-                return new Color(0x8E24AA);       // purple
+                return CyberpunkTheme.PURPLE;
             case PAUSED:
-                return new Color(0x757575);       // gray
+                return CyberpunkTheme.DIM;
             default:
-                return Color.GRAY;
+                return CyberpunkTheme.DIM;
         }
     }
 
