@@ -72,3 +72,7 @@ Observer relationship: `PomodoroModel` notifies `PomodoroView` through the
 - The view implements the observer and only updates UI components.
 - The controller holds the button listeners and only calls model methods.
 - The Swing `Timer` drives the ticking (EDT safe).
+
+## Note
+
+Claude only checked if the folders have README and gitignore and pushed them so all of them are pushed
